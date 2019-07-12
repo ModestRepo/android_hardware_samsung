@@ -25,7 +25,7 @@ namespace vendor {
 namespace lineage {
 namespace touch {
 namespace V1_0 {
-namespace samsung {
+namespace implementation {
 
 using ::android::hardware::hidl_array;
 using ::android::hardware::hidl_memory;
@@ -35,21 +35,18 @@ using ::android::hardware::Return;
 using ::android::hardware::Void;
 using ::android::sp;
 
-class GloveMode : public IGloveMode {
-  public:
-    GloveMode() = default;
-
-    bool isSupported();
-
+struct GloveMode : public IGloveMode {
     // Methods from ::vendor::lineage::touch::V1_0::IGloveMode follow.
-    Return<bool> isEnabled() override;
-    Return<bool> setEnabled(bool enabled) override;
+    Return<void> setEnabled(bool enabled) override;
 
     // Methods from ::android::hidl::base::V1_0::IBase follow.
 
 };
 
-}  // namespace samsung
+// FIXME: most likely delete, this is only for passthrough implementations
+// extern "C" IGloveMode* HIDL_FETCH_IGloveMode(const char* name);
+
+}  // namespace implementation
 }  // namespace V1_0
 }  // namespace touch
 }  // namespace lineage
